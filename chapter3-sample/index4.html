@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index</title>
+<script src="https://unpkg.com/vue"></script>
+<style>
+.hello-class {
+  font-size: 20pt;
+  font-weight: bold;
+  border: 1px solid magenta;
+  padding: 5px 10px 0px 10px;
+  margin: 10px;
+}
+</style>
+</head>
+<body>
+
+  <h1>Vue.js</h1>
+
+  <div id="app">
+    <hello v-for="item in items" v-bind:name="item" />
+  </div>
+
+  <script>
+
+    // component作成
+    var hello = Vue.component('hello',
+      {
+        props: [ 'name' ],
+        template: '<p class="hello-class">Hello, {{ name }}!!</p>'
+      }
+    );
+
+    // Vueオブジェクト作成
+    var app = new Vue({
+      el: '#app',
+      data: {
+        items: ['Taro', 'Yuta', 'Hanako', 'Yui', 'Ichiro']
+      }
+    });
+
+
+  </script>
+</body>
+</html>

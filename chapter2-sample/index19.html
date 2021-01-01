@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index</title>
+<script src="https://unpkg.com/vue"></script>
+<style>
+table tr th {
+  font-size: 16pt;
+  color: white;
+  background-color: blue;
+  padding: 5px 15px;
+}
+table tr td {
+  font-size: 14pt;
+  color: gray;
+  border: 1px solid gray;
+}
+li {
+  font-size: 16pt;
+  color: gray;
+}
+
+</style>
+</head>
+<body>
+  <h1>Vue.js</h1>
+  <div id="app">
+    <template v-if="flg">
+      <p>※データをテーブル表示する</p>
+      <table>
+        <tr>
+          <th>名前</th>
+          <th>電話番号</th>
+          <th>メールアドレス</th>
+        </tr>
+        <tr v-for="(item, key) in items">
+          <td>{{ key }}</td>
+          <td>{{ item.tel }}</td>
+          <td>{{ item.mail }}</td>
+        </tr>
+      </table>
+    </template>
+  </div>
+
+  <script>
+  
+    var items = {
+      田中: {
+        "mail": "tanaka@gmail.com",
+        "tel": 123
+      },
+      加藤: {
+        "mail": "t...kato@gmail.com",
+        "tel": 1234
+      },
+      山田: {
+        "mail": "yamada.1234.yamada@gmail.com",
+        "tel": 12345
+      }
+    };
+
+    var data = {
+      flg: true,
+      items: items
+    };
+
+    var app = new Vue({
+      el: '#app',
+      data: data
+    });
+
+  </script>
+</body>
+</html>

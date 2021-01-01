@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index</title>
+<script src="https://unpkg.com/vue"></script>
+<style>
+.hello-class {
+  font-size: 20pt;
+  font-weight: bold;
+  border: 1px solid magenta;
+  padding: 5px 10px 0px 10px;
+  margin: 10px;
+}
+</style>
+</head>
+<body>
+
+  <h1>Vue.js</h1>
+
+  <div id="app">
+    <div>
+      <hello />
+    </div>
+  </div>
+
+  <script>
+
+    // component作成
+    var hello = Vue.component('hello',
+      {
+        data: function() {
+          return {
+            counter: 0
+          };
+        },
+        template: '<p v-on:click="counter++;" class="hello-class">クリックするとカウントアップする。現在値= {{ counter }} 回</p>'
+      }
+    );
+
+    // Vueオブジェクト作成
+    var app = new Vue({
+      el: '#app'
+    });
+
+  </script>
+</body>
+</html>

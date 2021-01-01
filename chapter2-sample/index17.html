@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index</title>
+<script src="https://unpkg.com/vue"></script>
+<style>
+table tr th {
+  font-size: 16pt;
+  color: white;
+  background-color: blue;
+  padding: 5px 15px;
+}
+table tr td {
+  font-size: 14pt;
+  color: gray;
+  border: 1px solid gray;
+}
+li {
+  font-size: 16pt;
+  color: gray;
+}
+
+</style>
+</head>
+<body>
+  <h1>Vue.js</h1>
+  <div id="app">
+    <template v-if="flg">
+      <p>※データをテーブル表示する</p>
+      <table>
+        <tr>
+          <th>名前</th>
+          <th>メールアドレス</th>
+        </tr>
+        <tr v-for="item in items">
+          <td>{{ item.name }}</td>
+          <td>{{ item.mail }}</td>
+        </tr>
+      </table>
+    </template>
+    <template v-else>
+      <p>※データをリスト表示する</p>
+      <ul>
+        <li v-for="item in items">{{ item.name }} のメールアドレスは{{ item.mail }}</li>
+      </ul>
+    </template>
+  </div>
+
+
+  <button onClick="doAction(event);">表示切替</button>
+
+  
+  <script>
+  
+    var items = [
+      {
+        "name": "田中",
+        "mail": "tanaka@gmail.com"
+      },
+      {
+        "name": "加藤",
+        "mail": "t...kato@gmail.com"
+      },
+      {
+        "name": "山田",
+        "mail": "yamada.1234.yamada@gmail.com"
+      }
+    ];
+
+    var data = {
+      flg: true,
+      items: items
+    };
+
+    var app = new Vue({
+      el: '#app',
+      data: data
+    });
+
+    function doAction(event) {
+       data.flg = !data.flg;
+    };
+
+  </script>
+</body>
+</html>

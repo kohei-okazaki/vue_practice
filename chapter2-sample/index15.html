@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index</title>
+<script src="https://unpkg.com/vue"></script>
+<style>
+.ok {
+  font-size: 24pt;
+  color: blue;
+  border: 2px solid pink;
+}
+.ng {
+  font-size: 20pt;
+  color: gray;
+}
+
+</style>
+</head>
+<body>
+  <h1>Vue.js</h1>
+  <div id="app">
+    <p v-if="flg" class="ok">Ç±ÇÍÇÕê≥èÌÇ»ï\é¶Ç≈Ç∑</p>
+    <p v-else class="ng">åªç›ÅAñ‚ëËÇ™î≠ê∂íÜÇ≈Ç∑</p>
+  </div>
+
+
+  <button onClick="doAction(event);">Click</button>
+
+  
+  <script>
+
+    var data = {
+      flg: true
+    };
+
+    var app = new Vue({
+      el: '#app',
+      data: data
+    });
+
+    function doAction(event) {
+       data.flg = !data.flg;
+    };
+
+  </script>
+</body>
+</html>

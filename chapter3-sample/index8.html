@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index</title>
+<script src="https://unpkg.com/vue"></script>
+<style>
+.hello-class {
+  font-size: 20pt;
+  font-weight: bold;
+  border: 1px solid magenta;
+  padding: 5px 10px 0px 10px;
+  margin: 10px;
+
+}
+.red {
+  color: white;
+  background-color: red;
+}
+</style>
+</head>
+<body>
+
+  <h1>Vue.js</h1>
+
+  <div id="app">
+    <hello-tag />
+  </div>
+
+  <script>
+
+
+
+
+    Vue.component('hello-tag', {
+
+      data: function() {
+        var data = {
+          num: 0,
+          message: 'type a number'
+        };
+        return data;
+      },
+      methods: {
+        calc: function(event) {
+          var total = 0;
+          for (var i = 1; i <= this.num; i++) {
+            total += i;
+          }
+          this.message = 'total=' + total;
+        }
+      },
+
+      // v-on:XXXX="hoge" でXXXXの操作をしたときに hoge 関数を呼ぶ
+      // v-model="XXXX" コンポーネント内のXXXXという変数とマッピングできる
+      // templateタグ内は常にベースとなるタグを常に1つ用意すること
+      template: '<div><p class="hello-class">{{ message }}</p><div><input type="number" v-on:input="calc" v-model="num"></div></div>'
+
+    });
+
+    var app = new Vue({
+      el: '#app'
+    });
+
+  </script>
+</body>
+</html>

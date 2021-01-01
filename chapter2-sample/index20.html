@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index</title>
+<script src="https://unpkg.com/vue"></script>
+<style>
+table tr th {
+  font-size: 16pt;
+  color: white;
+  background-color: blue;
+  padding: 5px 15px;
+}
+table tr td {
+  font-size: 14pt;
+  color: gray;
+  border: 1px solid gray;
+}
+li {
+  font-size: 16pt;
+  color: gray;
+}
+
+</style>
+</head>
+<body>
+  <h1>Vue.js</h1>
+  <div id="app">
+    <p>※データをテーブル表示する</p>
+    <table>
+      <tr>
+        <th>#</th>
+        <th>名前</th>
+        <th>電話番号</th>
+        <th>メールアドレス</th>
+      </tr>
+      <tr v-for="(item, index) in items" v-if="index % 2 == 0">
+        <td>{{ index }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.mail }}</td>
+        <td>{{ item.tel }}</td>
+      </tr>
+      <tr v-else>
+        <td>****</td>
+        <td>****（非公開）</td>
+        <td>****（非公開）</td>
+        <td>****（非公開）</td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+  
+    var items = [
+      {
+        "name": "田中",
+        "mail": "tanaka@gmail.com",
+        "tel": "123"
+      },
+      {
+        "name": "加藤",
+        "mail": "t...kato@gmail.com",
+        "tel": "1234"
+      },
+      {
+        "name": "山田",
+        "mail": "yamada.1234.yamada@gmail.com",
+        "tel": "12345"
+      }
+    ];
+
+    var data = {
+      items: items
+    };
+
+    var app = new Vue({
+      el: '#app',
+      data: data
+    });
+
+  </script>
+</body>
+</html>

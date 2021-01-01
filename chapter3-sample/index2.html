@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index</title>
+<script src="https://unpkg.com/vue"></script>
+<style>
+.hello-class {
+  font-size: 20pt;
+  font-weight: bold;
+  border: 1px solid magenta;
+  padding: 5px 10px 0px 10px;
+  margin: 10px;
+}
+</style>
+</head>
+<body>
+
+  <h1>Vue.js</h1>
+
+  <div id="app">
+    <hello />
+  </div>
+
+  <script>
+
+    // Vueオブジェクトをそのまま記載していたchapter2では画面に出す値を以下のように変数で定義していた
+    // data: {message: 'test'}
+
+    // Component利用の場合、以下のようにfunction化して返却する
+    // data: function() { return 'test'; }
+
+    Vue.component('hello', {
+      data: function() {
+        var res = {
+          message: 'これは新しいメッセージです'
+        };
+        return res;
+      },
+      template: '<p class="hello-class">{{ message }}</p>'
+    });
+
+    // Vueオブジェクトを作る
+    var app = new Vue({
+      el: '#app'
+    });
+
+  </script>
+</body>
+</html>

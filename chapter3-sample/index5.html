@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index</title>
+<script src="https://unpkg.com/vue"></script>
+<style>
+.hello-class {
+  font-size: 20pt;
+  font-weight: bold;
+  border: 1px solid magenta;
+  padding: 5px 10px 0px 10px;
+  margin: 10px;
+}
+</style>
+</head>
+<body>
+
+  <h1>Vue.js</h1>
+
+  <div id="app">
+    <div>
+      <hello v-bind:name="hoge" />
+    </div>
+    <div>
+      <input type="text" v-model="hoge">
+    </div>
+  </div>
+
+  <script>
+
+    // component作成
+    var hello = Vue.component('hello',
+      {
+        // ↓でv-bind:XXX、{{ XXX }} を有効にする
+        props: [ 'name' ],
+        template: '<p class="hello-class">Hello, {{ name }}!!</p>'
+      }
+    );
+
+    // Vueオブジェクト作成
+    var app = new Vue({
+      el: '#app',
+      data: {
+        // ここのhogeにv-modelのvalueがバインドされる
+        hoge: "no name"
+      }
+    });
+
+
+  </script>
+</body>
+</html>

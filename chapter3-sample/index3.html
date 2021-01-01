@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index</title>
+<script src="https://unpkg.com/vue"></script>
+<style>
+.hello-class {
+  font-size: 20pt;
+  font-weight: bold;
+  border: 1px solid magenta;
+  padding: 5px 10px 0px 10px;
+  margin: 10px;
+}
+</style>
+</head>
+<body>
+
+  <h1>Vue.js</h1>
+
+  <div id="app">
+    <div>
+      <hello name="Taro" />
+    </div>
+    <div>
+      <hello name="Hanako" />
+    </div>
+  </div>
+
+  <script>
+
+    // componentタグの属性の値を取得。
+    // 以下の3つの値は同じものが入っている
+    // 1. <hello name="XXX" />
+    // 2. props: [ 'name' ]
+    // 3. {{ name }}
+    // XXXの値に型を付けたい場合、component内の値を以下の様に変更
+    // props: [ 'name' ] → props: { name:String }
+
+    Vue.component('hello', {
+      props: [ 'name' ],
+      template: '<p class="hello-class">Hello, {{ name }}</p>'
+    });
+    
+    // Vueオブジェクトを作る
+    var app = new Vue({
+      el: '#app'
+    });
+  </script>
+</body>
+</html>
