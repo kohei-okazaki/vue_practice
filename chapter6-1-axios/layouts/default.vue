@@ -1,21 +1,9 @@
 <template>
-  <div class="content">
-    <div class="content-wrapper">
-      <!-- <div class="row"> -->
-      <div>
-        <div class="col-xs-4">
-          <ul>
-            <!-- <li><router-link to="/">TOP ページヘ</router-link></li> -->
-            <!-- <li><router-link to="/memo">Memo ページヘ</router-link></li> -->
-            <li><a href="/">TOP ページヘ</a></li>
-            <li><a href="/memo">Memo ページヘ</a></li>
-          </ul>
-        </div>
-        <div class="col-xs-8">
-          <Nuxt />
-        </div>
-      </div>
-    </div>
+  <div>
+    <ul>
+      <li><router-link to="/axios">axiosページ</router-link></li>
+    </ul>
+    <Nuxt />
   </div>
 </template>
 
