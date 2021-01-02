@@ -59,12 +59,18 @@
 
 <script>
 export default {
+
   data: function () {
     return {
+      // in.メモ件名
       title: "",
+      // in.メモ内容
       content: "",
-      num_per_page: 7,
+      // 1ページあたりに表示するメモ件数
+      num_per_page: 5,
+      // 検索実行中を示すフラグ.　検索中ならばtrue,それ以外の場合false
       find_flg: false,
+      // 項目を選択した状態かを示すフラグ.　選択状態ならばtrue,それ以外の場合false
       sel_flg: false,
     };
   },
@@ -76,12 +82,10 @@ export default {
       if (this.find_flg) {
         var arr = [];
         var data = this.$store.state.memo.memo;
-        data.forEach((element) => {
-          if (
-            element.title
-              .toLowerCase()
-              .index.Of(this.title.toLowerCase() >= 0)
-          ) {
+        data.forEach(element => {
+          console.log("保存データタイトル=" + element.title.toLowerCase() + ", 入力情報.タイトル=" + this.title.toLowerCase());
+          if (element.title.toLowerCase().indexOf(this.title.toLowerCase()) >= 0) {
+            console.log("検索結果に追加 -> " + element.title);
             arr.push(element);
           }
         });
@@ -101,10 +105,8 @@ export default {
       },
       set: function (p) {
         var pg =
-          p > (this.$store.state.memo.memo.length - 1) / this.num_per_page
-            ? Math.ceil(
-                (this.$store.state.memo.memo.length - 1) / this.num_per_page
-              ) - 1
+          p > ((this.$store.state.memo.memo.length - 1) / this.num_per_page)
+            ? Math.ceil((this.$store.state.memo.memo.length - 1) / this.num_per_page) - 1
             : p;
 
         pg = pg < 0 ? 0 : pg;
@@ -114,10 +116,9 @@ export default {
   },
   methods: {
     set_flg: function () {
-      // TODO 下は「this.find_flg || this.sel_flg」で良さそう？
       if (this.find_flg || this.sel_flg != false) {
         this.find_flg = false;
-        this.sel_flg_flg = false;
+        this.sel_flg = false;
         this.title = "";
         this.content = "";
       }
@@ -130,7 +131,6 @@ export default {
         alert("メモ内容が未指定のため登録できません");
         return;
       }
-      
 
       this.$store.commit("memo/insert", {
         title: this.title,
@@ -152,7 +152,7 @@ export default {
         return;
       } else {
         this.$store.commit("memo/remove", this.sel_flg);
-        this.sel_flg = false;
+        this.set_flg();
       }
     },
     find: function () {
@@ -178,7 +178,7 @@ export default {
 }
 h1 {
   font-size: 60pt;
-  color: #234980;
+  color: #345980;
 }
 p {
   padding-top: 5px;
