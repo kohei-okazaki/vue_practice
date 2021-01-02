@@ -52,9 +52,7 @@
     <hr />
 
     <div class="nav">
-      <span v-on:click="prev">&lt;prev</span>
-      |
-      <span v-on:click="next">next&gt;</span>
+      <span v-on:click="prev">&lt;prev</span> | <span v-on:click="next">next&gt;</span>
     </div>
   </div>
 </template>
