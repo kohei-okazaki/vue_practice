@@ -22,7 +22,7 @@
         <th>マスク利用フラグ</th>
         <th>囲み文字利用フラグ</th>
       </tr>
-      <tr v-bind:key="account" v-for="account in account_list">
+      <tr v-bind:key="account.seq_user_id" v-for="account in account_list">
         <td>{{ account.seq_user_id }}</td>
         <td>{{ account.mail_address }}</td>
         <td>{{ account.delete_flag }}</td>
@@ -50,9 +50,9 @@ export default {
     return {
       title: "Axios",
       message: "axios sample.",
-      api_result: '',
+      api_result: "",
       account_list: [],
-      is_disp_table: false
+      is_disp_table: false,
     };
   },
   // component呼び出し時にAPIを叩く場合はget()関数をそのまま使う
@@ -67,21 +67,20 @@ export default {
 
   // 画面操作時はmethodsに定義
   methods: {
-    exec_search: function() {
-      axios.get(url).then(result => {
-        console.log(result.data);
-        if (result.data.result == '0') {
+    exec_search: function () {
+      axios.get(url).then((result) => {
+
+        if (result.data.result == "0") {
           this.is_disp_table = true;
+          this.api_result = result.data.result;
+          this.account_list = result.data.account_list;
         }
-        this.api_result = result.data.result;
-        this.account_list = result.data.account_list;
-      }).catch(error => {
+
+      }).catch((error) => {
         alert("API通信に失敗しました. URL=" + url);
         this.api_result = 1;
         this.account_list = [];
       });
-
-
     }
   }
 };
@@ -114,7 +113,7 @@ hr {
 button {
   font-size: 14pt;
 }
-th{
+th {
   background-color: #efefef;
 }
 </style>

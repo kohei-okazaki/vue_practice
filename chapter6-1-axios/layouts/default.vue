@@ -1,6 +1,7 @@
 <template>
   <div>
     <ul>
+      <li><router-link to="/">indexページ</router-link></li>
       <li><router-link to="/axios">axiosページ</router-link></li>
     </ul>
     <Nuxt />
